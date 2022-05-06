@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számos játék</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Számos játék</h1>
+    <table id="t">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        // cellak = document.querySelectorAll('td');        
+        // for (cella of cellak) {
+        //     veletlen = Math.floor(Math.random()*15)+1;            
+        //     cella.innerHTML = veletlen;
+        // }
+        szamok = [];
+        for (i = 0; i < 15; i++){
+            szamok[i] = i + 1;
+        }
+        for (i=0; i<4; i++){
+            for (j=0; j<4; j++){
+                if (!(i == 3 && j == 3)){
+                    veletlen = Math.floor(Math.random()*szamok.length);
+                    document.getElementById('t').rows[i].cells[j].innerHTML = szamok[veletlen];
+                    szamok[veletlen] = szamok[szamok.length - 1];
+                    szamok.pop();
+
+                    // while (szamok.includes(veletlen)) {
+                    //     veletlen = Math.floor(Math.random()*15)+1;
+                    // }
+                    // document.getElementById('t').rows[i].cells[j].innerHTML = veletlen;                    
+                    // szamok[i * 4 + j] = veletlen;
+                }
+                document.getElementById('t').rows[i].cells[j].setAttribute('onclick',`csere(${i},${j})`);
+            }
+        } 
+        
+        document.getElementById('t').rows[3].cells[3].setAttribute("id","ures");
+
+        function csere(i, j){
+            s = document.getElementById('ures').parentElement.rowIndex;
+            o = document.getElementById('ures').cellIndex;
+            if (( i == s && Math.abs(j - o) == 1) || (Math.abs(i-s) == 1 && j == o)) {
+                document.getElementById('t').rows[s].cells[o].innerHTML = document.getElementById('t').rows[i].cells[j].innerHTML;
+                document.getElementById('t').rows[s].cells[o].setAttribute("id","");
+                document.getElementById('t').rows[i].cells[j].setAttribute("id","ures");
+            }
+        }
+    </script>
+</body>
+</html>

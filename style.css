@@ -1,0 +1,23 @@
+body {
+    font-family: cursive;
+}
+td {
+    border: 1px solid;
+    padding: 20px;
+    text-align: right;
+    background-color: #1f1515;
+    color: white;
+    width: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+}
+
+#ures {
+    background-color: #fff;
+}
